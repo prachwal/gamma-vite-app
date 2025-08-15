@@ -1,19 +1,44 @@
 /**
- * @fileoverview Global type definitions for the application
+ * @fileoverview Global type definitions and interfaces for the application
+ * 
+ * Contains all shared TypeScript interfaces and type definitions used
+ * throughout the application. Includes theme configuration, language
+ * settings, application state, and navigation structures.
+ * 
+ * @since 1.0.0
  */
 
 /**
- * Available theme types
+ * Available theme types for the application
+ * 
+ * Supports light and dark theme modes with CSS custom properties
+ * for consistent styling across components.
+ * 
+ * @since 1.0.0
  */
 export type Theme = 'light' | 'dark';
 
 /**
- * Available language types
+ * Available language types for internationalization
+ * 
+ * Supports English and Polish languages with i18next integration
+ * and HTTP-based translation loading.
+ * 
+ * @since 1.0.0
  */
 export type Language = 'en' | 'pl';
 
 /**
- * Application state interface
+ * Global application state interface
+ * 
+ * Defines the structure of the Redux store's app slice containing
+ * user preferences and UI state.
+ * 
+ * @interface AppState
+ * @property theme - Current theme setting (light/dark)
+ * @property language - Current language setting (en/pl)
+ * @property sidebarCollapsed - Sidebar collapse state for responsive layout
+ * @since 1.0.0
  */
 export interface AppState {
     theme: Theme;

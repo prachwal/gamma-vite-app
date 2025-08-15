@@ -1,0 +1,51 @@
+{
+  "entryPoints": ["src"],
+  "entryPointStrategy": "expand",
+  "out": "docs",
+  "name": "Gamma Vite App API Documentation",
+  "readme": "README.md",
+  "theme": "default",
+  "categorizeByGroup": true,
+  "categoryOrder": [
+    "Components",
+    "Pages", 
+    "Hooks",
+    "Store",
+    "Services",
+    "Types",
+    "*"
+  ],
+  "groupOrder": [
+    "Components",
+    "Pages",
+    "Hooks", 
+    "Store",
+    "Services",
+    "Types",
+    "*"
+  ],
+  "sort": ["source-order"],
+  "exclude": [
+    "**/*.test.*",
+    "**/*.spec.*",
+    "**/*.stories.*",
+    "**/test/**/*",
+    "**/tests/**/*",
+    "node_modules/**/*"
+  ],
+  "excludePrivate": false,
+  "excludeProtected": false,
+  "excludeInternal": false,
+  "includeVersion": true,
+  "disableSources": false,
+  "sourceLinkTemplate": "https://github.com/username/gamma-vite-app/blob/{gitRevision}/{path}#L{line}",
+  "gitRevision": "main",
+  "gitRemote": "origin",
+  "tsconfig": "./tsconfig.app.json",
+  "plugin": [],
+  "validation": {
+    "notExported": true,
+    "invalidLink": true,
+    "notDocumented": false
+  }
+}

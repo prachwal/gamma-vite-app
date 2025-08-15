@@ -1,5 +1,11 @@
 /**
  * @fileoverview Redux slice for application state management
+ * 
+ * Manages global application state including theme, language preferences,
+ * and UI state. Provides actions for theme toggling, language switching,
+ * and sidebar collapse state with localStorage persistence.
+ * 
+ * @since 1.0.0
  */
 
 import { createSlice } from '@reduxjs/toolkit';
@@ -7,7 +13,14 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Theme, Language, AppState } from '../types';
 
 /**
- * Get initial theme from localStorage or system preference
+ * Retrieves initial theme from localStorage or system preference
+ * 
+ * Checks localStorage first for saved theme preference, then falls back
+ * to system preference via matchMedia API. Defaults to 'light' theme
+ * on server-side rendering.
+ * 
+ * @returns The initial theme setting
+ * @since 1.0.0
  */
 const getInitialTheme = (): Theme => {
     if (typeof window !== 'undefined') {
@@ -21,7 +34,14 @@ const getInitialTheme = (): Theme => {
 };
 
 /**
- * Get initial language from localStorage or browser preference
+ * Retrieves initial language from localStorage or browser preference
+ * 
+ * Checks localStorage first for saved language preference, then falls back
+ * to browser language detection. Supports 'en' and 'pl' languages with
+ * 'pl' as default fallback.
+ * 
+ * @returns The initial language setting
+ * @since 1.0.0
  */
 const getInitialLanguage = (): Language => {
     if (typeof window !== 'undefined') {
@@ -36,7 +56,12 @@ const getInitialLanguage = (): Language => {
 };
 
 /**
- * Initial application state
+ * Initial application state configuration
+ * 
+ * Defines the default state with preferences loaded from localStorage
+ * or system defaults. Sidebar starts collapsed on mobile devices.
+ * 
+ * @since 1.0.0
  */
 const initialState: AppState = {
     theme: getInitialTheme(),

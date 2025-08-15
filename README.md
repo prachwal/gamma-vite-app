@@ -185,6 +185,136 @@ npm run build
 # Upload dist/ folder
 ```
 
+## 🧪 Testowanie
+
+Projekt używa **Vitest** jako frameworka do testowania z integracją @testing-library/react.
+
+### Uruchomienie testów
+
+```bash
+# Uruchom testy jednostkowe
+npm run test
+
+# Uruchom testy w trybie watch
+npm run test
+
+# Uruchom testy raz (CI mode)
+npm run test:run
+
+# Uruchom testy z interfejsem UI
+npm run test:ui
+
+# Generuj raport pokrycia kodu
+npm run test:coverage
+```
+
+### Struktura testów
+
+```
+src/
+├── components/
+│   ├── Component.tsx
+│   └── Component.test.tsx
+├── hooks/
+│   ├── useHook.ts
+│   └── useHook.test.ts
+├── pages/
+│   ├── Page.tsx
+│   └── Page.test.tsx
+└── test/
+    ├── setup.ts          # Konfiguracja testów
+    └── utils.tsx         # Narzędzia pomocnicze
+```
+
+### Przykład testu
+
+```tsx
+import { render, screen, userEvent } from '../test/utils';
+import { ThemeToggle } from './ThemeToggle';
+
+test('toggles theme when clicked', async () => {
+  const user = userEvent.setup();
+  render(<ThemeToggle />);
+  
+  const button = screen.getByRole('button');
+  await user.click(button);
+  
+  // Sprawdź czy akcja została wykonana
+});
+```
+
+## 📚 Dokumentacja
+
+Projekt używa **TypeDoc** do generowania automatycznej dokumentacji API z komentarzy TSDoc.
+
+### Generowanie dokumentacji
+
+```bash
+# Generuj dokumentację
+npm run docs
+
+# Generuj dokumentację w trybie watch
+npm run docs:watch
+
+# Serwuj dokumentację lokalnie
+npm run docs:serve
+```
+
+### Komentarze TSDoc
+
+```typescript
+/**
+ * @fileoverview Opis pliku
+ * @since 1.0.0
+ */
+
+/**
+ * Opis funkcji lub komponentu
+ * 
+ * @param param - Opis parametru
+ * @returns Opis zwracanej wartości
+ * @example
+ * ```tsx
+ * // Przykład użycia
+ * <Component param="value" />
+ * ```
+ * @since 1.0.0
+ */
+export function Component() {
+  // implementacja
+}
+```
+
+### Konwencje dokumentacji
+
+- **@fileoverview** - Opis modułu na początku pliku
+- **@since** - Wersja w której funkcja została dodana  
+- **@param** - Opis parametrów funkcji
+- **@returns** - Opis wartości zwracanej
+- **@example** - Przykłady użycia
+- **@component** - Oznaczenie komponentów React
+
+### Przeglądanie dokumentacji
+
+Po wygenerowaniu dokumentacja będzie dostępna w folderze `docs/`. 
+Użyj `npm run docs:serve` aby otworzyć ją w przeglądarce.
+
+## 📁 Foldery ignorowane w Git
+
+```gitignore
+# Dokumentacja
+docs/
+
+# Pokrycie testów
+coverage/
+
+# Cache Vitest
+.vitest/
+
+# Storybook
+storybook-static
+```
+
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
 ```js
