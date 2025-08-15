@@ -1,0 +1,34 @@
+{
+    "navigation": {
+        "home": "Strona główna",
+        "about": "O nas",
+        "settings": "Ustawienia"
+    },
+    "theme": {
+        "light": "Jasny",
+        "dark": "Ciemny",
+        "toggleTheme": "Zmień motyw"
+    },
+    "language": {
+        "polish": "Polski",
+        "english": "Angielski",
+        "changeLanguage": "Zmień język"
+    },
+    "pages": {
+        "home": {
+            "title": "Strona główna",
+            "welcome": "Witaj w aplikacji!",
+            "description": "To jest strona główna naszej aplikacji."
+        },
+        "about": {
+            "title": "O nas",
+            "description": "Informacje o naszej aplikacji i zespole."
+        },
+        "settings": {
+            "title": "Ustawienia",
+            "appearance": "Wygląd",
+            "language": "Język",
+            "theme": "Motyw"
+        }
+    }
+}

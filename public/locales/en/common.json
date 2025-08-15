@@ -1,0 +1,34 @@
+{
+    "navigation": {
+        "home": "Home",
+        "about": "About",
+        "settings": "Settings"
+    },
+    "theme": {
+        "light": "Light",
+        "dark": "Dark",
+        "toggleTheme": "Toggle theme"
+    },
+    "language": {
+        "polish": "Polish",
+        "english": "English",
+        "changeLanguage": "Change language"
+    },
+    "pages": {
+        "home": {
+            "title": "Home",
+            "welcome": "Welcome to the app!",
+            "description": "This is the home page of our application."
+        },
+        "about": {
+            "title": "About",
+            "description": "Information about our application and team."
+        },
+        "settings": {
+            "title": "Settings",
+            "appearance": "Appearance",
+            "language": "Language",
+            "theme": "Theme"
+        }
+    }
+}
