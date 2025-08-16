@@ -15,6 +15,9 @@ dist-ssr
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
 .idea
 .DS_Store
 *.suo
@@ -35,3 +38,27 @@ coverage/
 
 # Vitest
 .vitest/
+
+# Build management logs
+logs/
+
+# Temporary files
+.tmp/
+tmp/
+
+# Backup files
+*.backup.*
+
+# OS generated files
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files - extended
+*.swp
+*.swo
+*~
+# IDE files

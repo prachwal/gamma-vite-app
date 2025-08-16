@@ -59,12 +59,32 @@ npm run build  # TypeScript check + Vite build
 npm run lint   # ESLint with React hooks + TypeScript rules
 ```
 
+### Testing & Documentation
+
+```bash
+# Testing
+npm run test          # Run tests in watch mode
+npm run test:run      # Run tests once (CI)
+npm run test:ui       # Run with UI interface
+npm run test:coverage # Generate coverage report
+
+# Documentation
+npm run docs          # Generate TSDoc documentation
+npm run docs:watch    # Generate in watch mode
+npm run docs:serve    # Serve documentation locally
+
+# Storybook
+npm run storybook     # Start Storybook dev server
+npm run build-storybook # Build static Storybook
+```
+
 ### Adding New Components
 
 1. Create in appropriate folder (`components/`, `pages/`, `layouts/`)
 2. Export from folder's `index.ts`
 3. Use typed Redux hooks: `useAppDispatch`, `useAppSelector`
 4. Apply CSS custom properties: `var(--color-*, --space-*, --transition-*)`
+5. **REQUIRED**: Create corresponding `.test.tsx` and `.stories.ts` files
 
 ### Responsive Component Guidelines
 
@@ -98,6 +118,68 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 - All Redux state is typed via `RootState` and `AppDispatch`
 - Component props interfaces always exported
 - Global types in `src/types/index.ts`
+
+## Testing Architecture
+
+### Test Structure
+
+```
+src/
+├── test/
+│   ├── setup.ts          # Vitest setup with mocks
+│   ├── testRender.tsx    # TestProviders component
+│   ├── testUtils.ts      # render function and utilities
+│   └── utils.ts          # Exports for all test utilities
+```
+
+### Test Utilities
+
+- **TestProviders**: Wraps components with Redux, Router, ThemeProvider
+- **render()**: Custom render with provider support
+- **userEvent**: Re-exported from @testing-library/user-event
+- Mocks: ResizeObserver, matchMedia, localStorage
+
+### Test Guidelines
+
+- Every component MUST have a `.test.tsx` file
+- Use `render()` from `../test/utils` for component testing
+- Mock i18next in tests with translation objects
+- Test user interactions with `userEvent.setup()`
+- Test responsive behavior with `useResponsive` mock
+
+## Storybook Architecture
+
+### Story Structure
+
+```
+src/stories/ComponentName.stories.ts
+```
+
+### Story Guidelines
+
+- Every component MUST have a `.stories.ts` file
+- Use `@storybook/react-vite` for imports
+- Include `tags: ['autodocs']` for automatic documentation
+- Create stories for different states/variants
+- Use controls for interactive props
+
+## Documentation System
+
+### TSDoc Standards
+
+- **@fileoverview**: Module description at file start
+- **@since**: Version tracking for all exports
+- **@param**: Parameter descriptions with types
+- **@returns**: Return value descriptions
+- **@example**: Code usage examples
+- **@component**: Mark React components
+
+### Documentation Generation
+
+- Uses TypeDoc with TSDoc comments
+- Generates to `docs/` folder (gitignored)
+- Comprehensive API documentation with examples
+- Type information automatically included
 
 ## Critical Integration Points
 
@@ -138,6 +220,8 @@ const handleLanguageChange = async (language: Language) => {
 - `store/` - Redux slices and store configuration
 - `styles/` - Global CSS with custom properties
 - `types/` - Shared TypeScript interfaces
+- `test/` - Test utilities and configuration
+- `stories/` - Storybook component stories
 
 ## Common Gotchas
 
@@ -146,3 +230,6 @@ const handleLanguageChange = async (language: Language) => {
 3. **CSS Variables**: Always use `var(--*)` syntax, defined in `:root` and theme selectors
 4. **Redux Hooks**: Import from `hooks/redux` not direct from react-redux
 5. **i18n Loading**: Call `initializeI18n()` in App.tsx useEffect, handle async properly
+6. **Test Files**: Use `.ts` for utilities, `.tsx` only for components (Fast Refresh rules)
+7. **Storybook Imports**: Use `@storybook/react-vite` not `@storybook/react`
+8. **ESLint Coverage**: `coverage/` folder excluded from linting

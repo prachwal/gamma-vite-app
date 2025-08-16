@@ -1,0 +1,20 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "vitest.enable": true,
+    "vitest.commandLine": "npm run test",
+    "testing.automaticallyOpenPeekView": "failureInVisibleDocument"
+  },
+  "extensions": {
+    "recommendations": [
+      "vitest.explorer",
+      "ms-vscode.vscode-typescript-next",
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint"
+    ]
+  }
+}

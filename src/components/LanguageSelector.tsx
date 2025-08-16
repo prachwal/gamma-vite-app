@@ -52,7 +52,6 @@ const languages: LanguageConfig[] = [
  * and allows users to switch between available languages. Changes
  * are synchronized between Redux store and i18next instance.
  * 
- * @component
  * @example
  * ```tsx
  * // Basic usage

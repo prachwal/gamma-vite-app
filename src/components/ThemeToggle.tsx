@@ -21,7 +21,6 @@ import { toggleTheme } from '../store/appSlice';
  * that allows users to switch between light and dark themes. The component is fully
  * internationalized and accessible.
  * 
- * @component
  * @example
  * ```tsx
  * // Basic usage

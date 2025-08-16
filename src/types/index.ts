@@ -34,15 +34,14 @@ export type Language = 'en' | 'pl';
  * Defines the structure of the Redux store's app slice containing
  * user preferences and UI state.
  * 
- * @interface AppState
- * @property theme - Current theme setting (light/dark)
- * @property language - Current language setting (en/pl)
- * @property sidebarCollapsed - Sidebar collapse state for responsive layout
  * @since 1.0.0
  */
 export interface AppState {
+    /** Current theme setting (light/dark) */
     theme: Theme;
+    /** Current language setting (en/pl) */
     language: Language;
+    /** Sidebar collapse state for responsive layout */
     sidebarCollapsed: boolean;
 }
 

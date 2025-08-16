@@ -1,5 +1,5 @@
 /**
- * @fileoverview Custom hook for responsive breakpoints and device detection
+ * @fileoverview Custom hook for responsive breakpoint detection
  * 
  * Provides a React hook that tracks window dimensions and determines the current
  * device type (mobile, tablet, desktop) based on configurable breakpoints.
@@ -40,30 +40,30 @@ export type DeviceType = 'mobile' | 'tablet' | 'desktop';
 /**
  * Window size dimensions
  * 
- * @interface WindowSize
- * @property width - Current window inner width in pixels
- * @property height - Current window inner height in pixels
+ * Represents current browser window dimensions in pixels.
  */
-interface WindowSize {
+export interface WindowSize {
+    /** Current window inner width in pixels */
     width: number;
+    /** Current window inner height in pixels */
     height: number;
 }
 
 /**
  * Return type for useResponsive hook
  * 
- * @interface UseResponsiveReturn
- * @property deviceType - Current device type classification
- * @property windowSize - Current window dimensions
- * @property isMobile - True if current device is mobile
- * @property isTablet - True if current device is tablet
- * @property isDesktop - True if current device is desktop
+ * Provides device type classification and responsive state information.
  */
-interface UseResponsiveReturn {
+export interface UseResponsiveReturn {
+    /** Current device type classification */
     deviceType: DeviceType;
+    /** Current window dimensions */
     windowSize: WindowSize;
+    /** True if current device is mobile */
     isMobile: boolean;
+    /** True if current device is tablet */
     isTablet: boolean;
+    /** True if current device is desktop */
     isDesktop: boolean;
 }
 
@@ -161,7 +161,9 @@ export const useResponsive = (): UseResponsiveReturn => {
         deviceType,
         windowSize,
         isMobile: deviceType === 'mobile',
-        isTablet: deviceType === 'tablet', 
+        isTablet: deviceType === 'tablet',
         isDesktop: deviceType === 'desktop',
     };
 };
+
+export default useResponsive;

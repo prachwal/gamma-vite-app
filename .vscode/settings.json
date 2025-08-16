@@ -1,0 +1,32 @@
+{
+  "vitest.enable": true,
+  "vitest.commandLine": "npx vitest --config vitest.config.ts",
+  "vitest.include": ["src/**/*.{test,spec}.{ts,tsx}"],
+  "vitest.exclude": [
+    "src/**/*.stories.{ts,tsx}",
+    "node_modules/**/*",
+    "src/stories/**/*"
+  ],
+  "vitest.workspaceConfig": "./vitest.config.ts",
+  "vitest.rootConfig": "./vitest.config.ts",
+  "typescript.preferences.includePackageJsonAutoImports": "auto",
+  "testing.automaticallyOpenPeekView": "failureInVisibleDocument",
+  "testing.defaultGutterClickAction": "run",
+  "testing.followRunningTest": true,
+  "testing.openTesting": "neverOpen",
+  "files.associations": {
+    "*.test.ts": "typescript",
+    "*.test.tsx": "typescriptreact",
+    "*.spec.ts": "typescript",
+    "*.spec.tsx": "typescriptreact"
+  },
+  "typescript.suggest.autoImports": true,
+  "eslint.workingDirectories": ["./"],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "testing.automaticallyOpenTestResults": "neverOpen"
+}

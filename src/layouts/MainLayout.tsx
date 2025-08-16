@@ -74,9 +74,9 @@ export const MainLayout: React.FC = () => {
 
             {/* Mobile overlay to close sidebar */}
             {deviceType === 'mobile' && !sidebarCollapsed && (
-                <div
-                    role="button"
-                    tabIndex={0}
+                <button
+                    type="button"
+                    aria-label="Close sidebar"
                     style={{
                         position: 'fixed',
                         top: 0,
@@ -85,14 +85,14 @@ export const MainLayout: React.FC = () => {
                         bottom: 0,
                         background: 'rgba(0, 0, 0, 0.5)',
                         zIndex: 'calc(var(--z-sidebar-mobile) - 1)',
+                        border: 'none',
+                        padding: 0,
+                        margin: 0,
+                        width: '100vw',
+                        height: '100vh',
+                        cursor: 'pointer',
                     }}
                     onClick={() => dispatch(setSidebarCollapsed(true))}
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            dispatch(setSidebarCollapsed(true));
-                        }
-                    }}
-                    aria-label="Close sidebar"
                 />
             )}
         </Layout>

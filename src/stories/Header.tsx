@@ -1,12 +1,17 @@
-import React from 'react';
-
 import { Button } from './Button';
 import './header.css';
 
-type User = {
+/**
+ * User information for header display
+ */
+export interface User {
+  /** User's display name */
   name: string;
-};
+}
 
+/**
+ * Header component properties
+ */
 export interface HeaderProps {
   user?: User;
   onLogin?: () => void;

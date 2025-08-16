@@ -301,7 +301,7 @@ Użyj `npm run docs:serve` aby otworzyć ją w przeglądarce.
 
 ## 📁 Foldery ignorowane w Git
 
-```gitignore
+```
 # Dokumentacja
 docs/
 

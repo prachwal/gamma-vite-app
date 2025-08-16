@@ -1,72 +1,77 @@
 /**
- * @fileoverview Vitest setup file for configuring testing environment
+ * @fileoverview Setup dla testów Vitest z kompletnym mockingiem
  * @since 1.0.0
  */
 
+import { vi } from 'vitest';
 import '@testing-library/jest-dom';
 
 // Mock ResizeObserver
-global.ResizeObserver = class ResizeObserver {
-  observe() {
-    // Mock implementation
-  }
-  
-  unobserve() {
-    // Mock implementation
-  }
-  
-  disconnect() {
-    // Mock implementation
-  }
-};
+vi.stubGlobal('ResizeObserver', vi.fn(() => ({
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+})));
 
 // Mock matchMedia
-Object.defineProperty(window, 'matchMedia', {
-  writable: true,
-  value: (query: string) => ({
+vi.stubGlobal('matchMedia', vi.fn((query: string) => ({
     matches: false,
     media: query,
     onchange: null,
-    addListener: () => {}, // deprecated
-    removeListener: () => {}, // deprecated
-    addEventListener: () => {},
-    removeEventListener: () => {},
-    dispatchEvent: () => {},
-  }),
-});
+    addListener: vi.fn(), // Deprecated
+    removeListener: vi.fn(), // Deprecated
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+})));
 
-// Mock localStorage with proper typing
-const localStorageData: Record<string, string> = {};
-
+// Mock localStorage
 const localStorageMock = {
-  getItem: (key: string): string | null => {
-    return localStorageData[key] || null;
-  },
-  setItem: (key: string, value: string): void => {
-    localStorageData[key] = value;
-  },
-  removeItem: (key: string): void => {
-    delete localStorageData[key];
-  },
-  clear: (): void => {
-    Object.keys(localStorageData).forEach(key => {
-      delete localStorageData[key];
-    });
-  },
-  get length() {
-    return Object.keys(localStorageData).length;
-  },
-  key: (index: number): string | null => {
-    const keys = Object.keys(localStorageData);
-    return keys[index] || null;
-  }
+    getItem: vi.fn((key: string) => {
+        if (key === 'language') return 'en';
+        if (key === 'theme') return 'light';
+        return null;
+    }),
+    setItem: vi.fn(),
+    removeItem: vi.fn(),
+    clear: vi.fn(),
 };
+vi.stubGlobal('localStorage', localStorageMock);
 
-Object.defineProperty(window, 'localStorage', {
-  value: localStorageMock
+// Mock IntersectionObserver
+vi.stubGlobal('IntersectionObserver', vi.fn(() => ({
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+})));
+
+// Mock window dimensions dla useResponsive
+Object.defineProperty(window, 'innerWidth', {
+    writable: true,
+    configurable: true,
+    value: 1024,
 });
 
-// Mock sessionStorage
-Object.defineProperty(window, 'sessionStorage', {
-  value: localStorageMock
+Object.defineProperty(window, 'innerHeight', {
+    writable: true,
+    configurable: true,
+    value: 768,
+});
+
+// Mock window dla SSR
+Object.defineProperty(window, 'location', {
+    writable: true,
+    configurable: true,
+    value: {
+        pathname: '/',
+        search: '',
+        hash: '',
+    },
+});
+
+// Mock console dla czyszczych testów
+vi.stubGlobal('console', {
+    ...console,
+    warn: vi.fn(),
+    error: vi.fn(),
 });

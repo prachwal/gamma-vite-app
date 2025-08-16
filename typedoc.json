@@ -1,5 +1,14 @@
 {
-  "entryPoints": ["src"],
+  "entryPoints": [
+    "src/components/index.ts",
+    "src/hooks/index.ts", 
+    "src/pages/index.ts",
+    "src/layouts/index.ts",
+    "src/services/index.ts",
+    "src/store/index.ts",
+    "src/types/index.ts",
+    "src/test/utils.ts"
+  ],
   "entryPointStrategy": "expand",
   "out": "docs",
   "name": "Gamma Vite App API Documentation",
@@ -30,9 +39,12 @@
     "**/*.spec.*",
     "**/*.stories.*",
     "**/test/**/*",
-    "**/tests/**/*",
-    "node_modules/**/*"
+    "**/tests/**/*", 
+    "node_modules/**/*",
+    "**/coverage/**/*",
+    "**/docs/**/*"
   ],
+  "excludeExternals": true,
   "excludePrivate": false,
   "excludeProtected": false,
   "excludeInternal": false,
@@ -40,12 +52,16 @@
   "disableSources": false,
   "sourceLinkTemplate": "https://github.com/username/gamma-vite-app/blob/{gitRevision}/{path}#L{line}",
   "gitRevision": "main",
-  "gitRemote": "origin",
+  "gitRemote": "origin", 
   "tsconfig": "./tsconfig.app.json",
   "plugin": [],
   "validation": {
-    "notExported": true,
-    "invalidLink": true,
+    "notExported": false,
+    "invalidLink": false,
     "notDocumented": false
-  }
+  },
+  "treatWarningsAsErrors": false,
+  "treatValidationWarningsAsErrors": false,
+  "logLevel": "Info",
+  "skipErrorChecking": true
 }

@@ -1,34 +1,114 @@
+/**
+ * @fileoverview Storybook stories for Header component
+ * @since 1.0.0
+ */
+
 import type { Meta, StoryObj } from '@storybook/react-vite';
-
 import { fn } from 'storybook/test';
-
-import { Header } from './Header';
+import { Header } from '../components/Header';
 
 const meta = {
-  title: 'Example/Header',
+  title: 'Components/Header',
   component: Header,
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-  tags: ['autodocs'],
   parameters: {
-    // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: 'fullscreen',
+    docs: {
+      description: {
+        component: 'Application header with navigation controls, theme toggle, and language selector.',
+      },
+    },
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    sidebarCollapsed: {
+      control: 'boolean',
+      description: 'Whether the sidebar is collapsed',
+    },
+    onSidebarToggle: {
+      action: 'sidebarToggle',
+      description: 'Callback fired when sidebar toggle is clicked',
+    },
+    title: {
+      control: 'text',
+      description: 'Application title displayed in header',
+    },
+    className: {
+      control: 'text',
+      description: 'Additional CSS classes',
+    },
   },
   args: {
-    onLogin: fn(),
-    onLogout: fn(),
-    onCreateAccount: fn(),
+    onSidebarToggle: fn(),
   },
 } satisfies Meta<typeof Header>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const LoggedIn: Story = {
+/**
+ * Default header with expanded sidebar
+ */
+export const Default: Story = {
   args: {
-    user: {
-      name: 'Jane Doe',
+    sidebarCollapsed: false,
+    title: 'Gamma App',
+  },
+};
+
+/**
+ * Header with collapsed sidebar
+ */
+export const CollapsedSidebar: Story = {
+  args: {
+    sidebarCollapsed: true,
+    title: 'Gamma App',
+  },
+};
+
+/**
+ * Header with custom title
+ */
+export const CustomTitle: Story = {
+  args: {
+    sidebarCollapsed: false,
+    title: 'Custom Application Title',
+  },
+};
+
+/**
+ * Header with custom styling
+ */
+export const CustomStyling: Story = {
+  args: {
+    sidebarCollapsed: false,
+    title: 'Styled Header',
+    className: 'custom-header-class',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Header with custom CSS class applied for styling customization.',
+      },
     },
   },
 };
 
-export const LoggedOut: Story = {};
+/**
+ * Mobile layout header
+ */
+export const MobileLayout: Story = {
+  args: {
+    sidebarCollapsed: false,
+    title: 'Mobile App',
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile1',
+    },
+    docs: {
+      description: {
+        story: 'Header optimized for mobile devices with hamburger menu.',
+      },
+    },
+  },
+};
