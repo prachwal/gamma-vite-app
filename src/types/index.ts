@@ -53,6 +53,7 @@ export interface NavigationItem {
     path: string;
     labelKey: string;
     icon?: React.ReactNode;
+    children?: NavigationItem[];
 }
 
 /**
@@ -63,3 +64,6 @@ export interface LayoutBreakpoints {
     tablet: number;
     desktop: number;
 }
+
+// AI types
+export type * from './ai';

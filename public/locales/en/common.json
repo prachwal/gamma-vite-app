@@ -1,6 +1,10 @@
 {
     "navigation": {
         "home": "Home",
+        "ai": "AI Assistant",
+        "chat": "Chat",
+        "models": "Model Browser",
+        "providers": "Providers",
         "about": "About",
         "settings": "Settings"
     },
@@ -29,6 +33,17 @@
             "appearance": "Appearance",
             "language": "Language",
             "theme": "Theme"
+        },
+        "ai": {
+            "title": "AI Assistant",
+            "description": "Configure your AI providers and models.",
+            "providers": "AI Providers",
+            "apiKey": "API Key",
+            "models": "Models",
+            "selectProvider": "Select Provider",
+            "selectModel": "Select Model",
+            "validate": "Validate Key",
+            "fetchModels": "Fetch Models"
         }
     }
 }

@@ -16,6 +16,7 @@
     --color-primary: #1890ff;
     --color-primary-hover: #40a9ff;
     --color-primary-active: #096dd9;
+    --color-primary-light: #e6f4ff;
 
     --color-success: #52c41a;
     --color-warning: #faad14;
@@ -34,6 +35,7 @@
 
     --color-border-primary: #d9d9d9;
     --color-border-secondary: #f0f0f0;
+    --color-border: #d9d9d9;
 
     --color-shadow-light: rgba(0, 0, 0, 0.04);
     --color-shadow-medium: rgba(0, 0, 0, 0.08);
@@ -72,6 +74,8 @@
 
 /* Dark theme colors */
 [data-theme='dark'] {
+    --color-primary-light: #111b26;
+
     --color-text-primary: #ffffff;
     --color-text-secondary: #d9d9d9;
     --color-text-tertiary: #bfbfbf;
@@ -84,6 +88,7 @@
 
     --color-border-primary: #434343;
     --color-border-secondary: #303030;
+    --color-border: #434343;
 
     --color-shadow-light: rgba(0, 0, 0, 0.12);
     --color-shadow-medium: rgba(0, 0, 0, 0.24);

@@ -10,8 +10,10 @@ import type { RenderOptions } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
-import { appSlice } from '../store/appSlice';
-import { ThemeProvider } from '../components/ThemeProvider';
+import appSlice from '../store/appSlice';
+import aiSlice from '../store/aiSlice';
+import configSlice from '../store/configSlice';
+import { ThemeProvider } from '../components/theme-provider';
 import { MockBrowserRouter } from './MockBrowserRouter';
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'wrapper'> {
@@ -31,12 +33,19 @@ function customRender(
         ...renderOptions
     }: ExtendedRenderOptions = {}
 ) {
-    // Create a fresh test store for each test
+    // Create a test store with preloaded state
     const testStore = configureStore({
         reducer: {
-            app: appSlice.reducer,
+            app: appSlice,
+            ai: aiSlice,
+            config: configSlice,
         },
-        preloadedState: preloadedState ? { app: preloadedState.app || appSlice.getInitialState() } : undefined,
+        preloadedState,
+        // Disable serializable check for testing
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({
+                serializableCheck: false,
+            }),
     });
 
     const TestWrapper = ({ children }: { children: ReactNode }) => {

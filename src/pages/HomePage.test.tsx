@@ -64,15 +64,20 @@ describe('HomePage', () => {
     it('has proper responsive layout styling', () => {
         render(<HomePage />);
 
-        const container = screen.getByText('Gamma Vite App').closest('div[style*="max-width: 800px"]');
+        const container = screen.getByText('Gamma Vite App').closest('div[style*="max-wid"]');
         expect(container).toBeInTheDocument();
-        expect(container).toHaveStyle({ maxWidth: '800px', margin: '0 auto' });
-    });
 
-    it('applies correct theme variables', () => {
+        // Check that style attribute contains expected values instead of toHaveStyle
+        const style = container?.getAttribute('style') || '';
+        expect(style).toContain('max-width: 800px');
+        expect(style).toContain('margin: 0px auto');
+    }); it('applies correct theme variables', () => {
         render(<HomePage />);
 
         const homeIcon = screen.getByRole('img', { name: /home/i });
-        expect(homeIcon).toHaveStyle({ color: 'var(--color-primary)' });
+
+        // Check that style attribute contains CSS variable instead of computed value
+        const style = homeIcon.getAttribute('style') || '';
+        expect(style).toContain('var(--color-primary)');
     });
 });

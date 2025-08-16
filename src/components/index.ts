@@ -1,10 +1,12 @@
 /**
- * @fileoverview Component exports
+ * @fileoverview Components barrel exports
+ * @since 1.0.0
  */
 
-export { Header } from './Header';
-export { Sidebar } from './Sidebar';
-export { ThemeToggle } from './ThemeToggle';
-export { LanguageSelector } from './LanguageSelector';
-export { HamburgerMenu } from './HamburgerMenu';
-export { ThemeProvider } from './ThemeProvider';
+export * from './header';
+export * from './sidebar';
+export * from './theme-provider';
+export * from './theme-toggle';
+export * from './language-selector';
+export * from './ai-settings';
+export * from './provider-management';

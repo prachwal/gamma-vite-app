@@ -1,13 +1,17 @@
 {
     "navigation": {
         "home": "Strona główna",
-        "about": "O nas",
+        "ai": "Asystent AI",
+        "chat": "Czat",
+        "models": "Przeglądarka modeli",
+        "providers": "Dostawcy",
+        "about": "O aplikacji",
         "settings": "Ustawienia"
     },
     "theme": {
         "light": "Jasny",
         "dark": "Ciemny",
-        "toggleTheme": "Zmień motyw"
+        "toggleTheme": "Przełącz motyw"
     },
     "language": {
         "polish": "Polski",
@@ -21,7 +25,7 @@
             "description": "To jest strona główna naszej aplikacji."
         },
         "about": {
-            "title": "O nas",
+            "title": "O aplikacji",
             "description": "Informacje o naszej aplikacji i zespole."
         },
         "settings": {
@@ -29,6 +33,17 @@
             "appearance": "Wygląd",
             "language": "Język",
             "theme": "Motyw"
+        },
+        "ai": {
+            "title": "Asystent AI",
+            "description": "Skonfiguruj swoich dostawców AI i modele.",
+            "providers": "Dostawcy AI",
+            "apiKey": "Klucz API",
+            "models": "Modele",
+            "selectProvider": "Wybierz dostawcę",
+            "selectModel": "Wybierz model",
+            "validate": "Sprawdź klucz",
+            "fetchModels": "Pobierz modele"
         }
     }
 }

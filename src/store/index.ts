@@ -4,6 +4,8 @@
 
 import { configureStore } from '@reduxjs/toolkit';
 import appReducer from './appSlice';
+import configReducer from './configSlice';
+import aiReducer from './aiSlice';
 
 /**
  * Configure and create Redux store
@@ -11,6 +13,8 @@ import appReducer from './appSlice';
 export const store = configureStore({
     reducer: {
         app: appReducer,
+        config: configReducer,
+        ai: aiReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

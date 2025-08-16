@@ -62,3 +62,5 @@ Thumbs.db
 *.swo
 *~
 # IDE files
+
+.env

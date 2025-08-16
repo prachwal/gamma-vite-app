@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "6.0.0",
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@reduxjs/toolkit": "2.8.2",
     "@types/react-router-dom": "5.3.3",
     "antd": "^5.27.0",
@@ -42,8 +43,11 @@
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "react-i18next": "15.6.1",
+    "react-markdown": "^10.1.0",
     "react-redux": "9.2.0",
-    "react-router-dom": "7.8.1"
+    "react-router-dom": "7.8.1",
+    "rehype-highlight": "^7.0.2",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "4.1.0",

@@ -26,17 +26,45 @@ vi.stubGlobal('matchMedia', vi.fn((query: string) => ({
 })));
 
 // Mock localStorage
+const storageData: Record<string, string> = {};
+
 const localStorageMock = {
     getItem: vi.fn((key: string) => {
         if (key === 'language') return 'en';
         if (key === 'theme') return 'light';
-        return null;
+        // Return stored data for AI-related keys
+        return storageData[key] || null;
     }),
-    setItem: vi.fn(),
-    removeItem: vi.fn(),
-    clear: vi.fn(),
+    setItem: vi.fn((key: string, value: string) => {
+        storageData[key] = value;
+    }),
+    removeItem: vi.fn((key: string) => {
+        delete storageData[key];
+    }),
+    clear: vi.fn(() => {
+        Object.keys(storageData).forEach(key => delete storageData[key]);
+    }),
 };
 vi.stubGlobal('localStorage', localStorageMock);
+
+// Mock fetch globally
+vi.stubGlobal('fetch', vi.fn());
+
+// Mock getComputedStyle for JSDOM
+Object.defineProperty(window, 'getComputedStyle', {
+    value: vi.fn(() => ({
+        getPropertyValue: vi.fn(() => ''),
+        width: '0px',
+        height: '0px',
+    })),
+    writable: true,
+});
+
+// Mock Element.prototype.scrollIntoView
+Object.defineProperty(Element.prototype, 'scrollIntoView', {
+    value: vi.fn(),
+    writable: true,
+});
 
 // Mock IntersectionObserver
 vi.stubGlobal('IntersectionObserver', vi.fn(() => ({

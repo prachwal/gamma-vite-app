@@ -5,37 +5,40 @@
 import React, { useEffect } from 'react';
 import { Layout } from 'antd';
 import { Outlet } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../hooks/redux';
+import { Header, Sidebar } from '../components';
+import { useAppDispatch, useAppSelector, useComponentPreloader } from '../hooks';
 import { useResponsive } from '../hooks/useResponsive';
 import { setSidebarCollapsed } from '../store/appSlice';
-import { Header } from '../components/Header';
-import { Sidebar } from '../components/Sidebar';
 
 const { Content } = Layout;
 
 /**
- * Main application layout component
- * Provides the overall structure with responsive sidebar and header
+ * @fileoverview Main layout component with responsive sidebar
+ * @component MainLayout
+ * @since 1.0.0
  */
 export const MainLayout: React.FC = () => {
     const dispatch = useAppDispatch();
-    const { sidebarCollapsed } = useAppSelector((state) => state.app);
     const { deviceType } = useResponsive();
+    const { sidebarCollapsed } = useAppSelector((state) => state.app);
+
+    // Initialize component preloading
+    useComponentPreloader();
 
     // Auto-collapse sidebar based on device type
     useEffect(() => {
-        switch (deviceType) {
-            case 'mobile':
-                dispatch(setSidebarCollapsed(true));
-                break;
-            case 'tablet':
-                dispatch(setSidebarCollapsed(true));
-                break;
-            case 'desktop':
-                dispatch(setSidebarCollapsed(false));
-                break;
+        if (deviceType === 'mobile') {
+            dispatch(setSidebarCollapsed(true));
+        } else if (deviceType === 'tablet') {
+            dispatch(setSidebarCollapsed(true));
+        } else {
+            dispatch(setSidebarCollapsed(false));
         }
     }, [deviceType, dispatch]);
+
+    const handleSidebarCollapse = (collapsed: boolean) => {
+        dispatch(setSidebarCollapsed(collapsed));
+    };
 
     const handleSidebarToggle = () => {
         dispatch(setSidebarCollapsed(!sidebarCollapsed));
@@ -43,58 +46,27 @@ export const MainLayout: React.FC = () => {
 
     return (
         <Layout style={{ minHeight: '100vh' }}>
-            <Header
-                sidebarCollapsed={sidebarCollapsed}
-                onSidebarToggle={handleSidebarToggle}
+            <Sidebar
+                collapsed={sidebarCollapsed}
+                onCollapse={handleSidebarCollapse}
             />
-
-            <Layout style={{ background: 'var(--color-bg-primary)' }}>
-                <Sidebar
-                    collapsed={sidebarCollapsed}
-                    onCollapse={setSidebarCollapsed}
+            <Layout>
+                <Header
+                    sidebarCollapsed={sidebarCollapsed}
+                    onSidebarToggle={handleSidebarToggle}
                 />
-
-                <Layout
+                <Content
                     style={{
-                        marginLeft: deviceType === 'mobile' ? 0 : undefined,
-                        background: 'var(--color-bg-primary)',
+                        padding: 'var(--space-lg)',
+                        backgroundColor: 'var(--color-bg-layout)',
+                        minHeight: 'calc(100vh - 64px)',
                     }}
                 >
-                    <Content
-                        style={{
-                            padding: 'var(--space-lg)',
-                            background: 'var(--color-bg-primary)',
-                            minHeight: 'calc(100vh - var(--header-height))',
-                        }}
-                    >
-                        <Outlet />
-                    </Content>
-                </Layout>
+                    <Outlet />
+                </Content>
             </Layout>
-
-            {/* Mobile overlay to close sidebar */}
-            {deviceType === 'mobile' && !sidebarCollapsed && (
-                <button
-                    type="button"
-                    aria-label="Close sidebar"
-                    style={{
-                        position: 'fixed',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        background: 'rgba(0, 0, 0, 0.5)',
-                        zIndex: 'calc(var(--z-sidebar-mobile) - 1)',
-                        border: 'none',
-                        padding: 0,
-                        margin: 0,
-                        width: '100vw',
-                        height: '100vh',
-                        cursor: 'pointer',
-                    }}
-                    onClick={() => dispatch(setSidebarCollapsed(true))}
-                />
-            )}
         </Layout>
     );
 };
+
+export default MainLayout;
